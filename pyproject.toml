@@ -1,0 +1,71 @@
+[tool.poetry]
+name = "exhbma"
+version = "0.1.11"
+description = "Exhaustive Search with Bayesian Model Averaging"
+authors = ["Koki Obinata <koki.obi.321@gmail.com>"]
+packages = [
+    { include = "exhbma" },
+]
+license = "MIT"
+repository = "https://github.com/okada-lab/exhbma"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+numpy = "^1.22.1"
+scipy = "^1.7.3"
+scikit-learn = "^1.0.2"
+pydantic = "^1.9.0"
+tqdm = "^4.62.3"
+matplotlib = "^3.5.1"
+
+[tool.poetry.dev-dependencies]
+isort = "^5.10.1"
+black = "^21.12b0"
+flake8 = "^4.0.1"
+mypy = "^0.931"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+types-setuptools = "^57.4.11"
+Sphinx = "^4.5.0"
+sphinx-rtd-theme = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.mypy]
+ignore_missing_imports = true
+check_untyped_defs = true
+follow_imports = 'silent'
+
+[tool.pytest.ini_options]
+addopts = "-s -rs --cov-config=.coveragerc --cov=exhbma --cov-report=html"
+log_cli_format = "%(levelname)s %(asctime)s [%(name)s]: %(message)s"
+log_cli_date_format = "%Y-%m-%dT%H:%M:%S%z"
